@@ -10,6 +10,25 @@ function ExerciseView({ level, onBack }) {
   const [totalWords, setTotalWords] = useState(0);
   const [favorites, setFavorites] = useState([]);
 
+  // Load favorites from localStorage on mount
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('deutschSprechenFavorites');
+    if (savedFavorites) {
+      try {
+        setFavorites(JSON.parse(savedFavorites));
+      } catch (e) {
+        console.error('Error loading favorites:', e);
+      }
+    }
+  }, []);
+
+  // Save favorites to localStorage whenever they change
+  useEffect(() => {
+    if (favorites.length > 0) {
+      localStorage.setItem('deutschSprechenFavorites', JSON.stringify(favorites));
+    }
+  }, [favorites]);
+
   useEffect(() => {
     // Initialize with all words for the selected level
     const words = travelTheme[level] || [];
@@ -81,11 +100,13 @@ function ExerciseView({ level, onBack }) {
             <button 
               className={`favorite-button ${isFavorite ? 'active' : ''}`}
               onClick={toggleFavorite}
-              title={isFavorite ? "Ta bort från favoriter" : "Lägg till i favoriter"}
+              title={isFavorite ? "Ta bort från favoriter (svåra ord)" : "Markera som svårt ord att träna extra på"}
+              aria-label={isFavorite ? "Ta bort från favoriter" : "Lägg till i favoriter"}
             >
               {isFavorite ? '★' : '☆'}
             </button>
           </div>
+          <p className="favorite-hint">💡 Klicka på stjärnan för att markera svåra ord</p>
           {currentWord.translation && (
             <p className="translation-info">({currentWord.translation})</p>
           )}

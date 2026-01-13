@@ -113,6 +113,14 @@
   filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.8));
 }
 
+.favorite-hint {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+  margin: 8px 0 0 0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
 .translation-info {
   font-size: 1.3rem;
   color: var(--text-white);
