@@ -6,11 +6,16 @@ function ExerciseView({ level, onBack }) {
   const [currentWord, setCurrentWord] = useState(null);
   const [usedWords, setUsedWords] = useState([]);
   const [availableWords, setAvailableWords] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [totalWords, setTotalWords] = useState(0);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     // Initialize with all words for the selected level
     const words = travelTheme[level] || [];
     setAvailableWords([...words]);
+    setTotalWords(words.length);
+    setCurrentIndex(1);
     pickRandomWord([...words], []);
   }, [level]);
 
@@ -20,6 +25,7 @@ function ExerciseView({ level, onBack }) {
       const allWords = travelTheme[level] || [];
       setAvailableWords([...allWords]);
       setUsedWords([]);
+      setCurrentIndex(1);
       pickRandomWord([...allWords], []);
       return;
     }
@@ -38,8 +44,21 @@ function ExerciseView({ level, onBack }) {
     
     setUsedWords(newUsedWords);
     setAvailableWords(newAvailableWords);
+    setCurrentIndex(currentIndex + 1);
     pickRandomWord(newAvailableWords, newUsedWords);
   };
+
+  const toggleFavorite = () => {
+    if (!currentWord) return;
+    
+    if (favorites.includes(currentWord.word)) {
+      setFavorites(favorites.filter(w => w !== currentWord.word));
+    } else {
+      setFavorites([...favorites, currentWord.word]);
+    }
+  };
+
+  const isFavorite = currentWord && favorites.includes(currentWord.word);
 
   if (!currentWord) {
     return <div className="exercise-view">Laddar...</div>;
@@ -49,12 +68,30 @@ function ExerciseView({ level, onBack }) {
     <div className="exercise-view">
       <div className="header">
         <button className="back-button" onClick={onBack}>← Tillbaka</button>
-        <span className="level-badge">{level}</span>
+        <div className="header-info">
+          <span className="word-counter">Ord {currentIndex} av {totalWords}</span>
+          <span className="level-badge">{level}</span>
+        </div>
       </div>
 
       <div className="main-content">
         <div className="word-display">
-          <h1 className="current-word">{currentWord.word}</h1>
+          <div className="word-header">
+            <h1 className="current-word">{currentWord.word}</h1>
+            <button 
+              className={`favorite-button ${isFavorite ? 'active' : ''}`}
+              onClick={toggleFavorite}
+              title={isFavorite ? "Ta bort från favoriter" : "Lägg till i favoriter"}
+            >
+              {isFavorite ? '★' : '☆'}
+            </button>
+          </div>
+          {currentWord.translation && (
+            <p className="translation-info">({currentWord.translation})</p>
+          )}
+          {currentWord.grammar && (
+            <p className="grammar-info">{currentWord.grammar}</p>
+          )}
         </div>
 
         <div className="phrases-section">
@@ -76,7 +113,23 @@ function ExerciseView({ level, onBack }) {
           <p className="cloud-label">Använda ord:</p>
           <div className="cloud-words">
             {usedWords.map((word, index) => (
-              <span key={index} className="cloud-word">{word}</span>
+              <span 
+                key={index} 
+                className={`cloud-word ${favorites.includes(word) ? 'favorite' : ''}`}
+              >
+                {word} {favorites.includes(word) && '★'}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {favorites.length > 0 && (
+        <div className="favorites-section">
+          <p className="favorites-label">⭐ Favoriter ({favorites.length}):</p>
+          <div className="favorites-list">
+            {favorites.map((word, index) => (
+              <span key={index} className="favorite-word">{word}</span>
             ))}
           </div>
         </div>

@@ -18,6 +18,21 @@
   margin-bottom: 30px;
 }
 
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.word-counter {
+  padding: 8px 16px;
+  background-color: var(--dark-lighter);
+  color: var(--text-white);
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
 .back-button {
   padding: 10px 20px;
   background-color: var(--dark-lighter);
@@ -60,12 +75,56 @@
   border: 2px solid var(--neon-green);
 }
 
+.word-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
 .current-word {
   font-size: 4rem;
   font-weight: 700;
   color: var(--neon-green);
   margin: 0;
   text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.favorite-button {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: var(--text-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.favorite-button:hover {
+  transform: scale(1.2);
+  color: var(--neon-green);
+}
+
+.favorite-button.active {
+  color: var(--neon-green);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.8));
+}
+
+.translation-info {
+  font-size: 1.3rem;
+  color: var(--text-white);
+  margin: 8px 0 5px 0;
+  font-weight: 500;
+}
+
+.grammar-info {
+  font-size: 1.1rem;
+  color: var(--text-gray);
+  font-style: italic;
+  margin: 0;
 }
 
 .phrases-section {
@@ -138,6 +197,42 @@
   font-size: 0.9rem;
 }
 
+.cloud-word.favorite {
+  background-color: rgba(0, 255, 136, 0.4);
+  border: 2px solid var(--neon-green);
+  font-weight: 600;
+}
+
+.favorites-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(0, 255, 136, 0.05);
+  border-radius: 12px;
+  border: 1px solid var(--neon-green);
+}
+
+.favorites-label {
+  font-size: 1rem;
+  color: var(--neon-green);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.favorites-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.favorite-word {
+  padding: 8px 16px;
+  background-color: var(--neon-green);
+  color: var(--dark-bg);
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 @media (max-width: 600px) {
   .exercise-view {
     padding: 20px;
@@ -145,6 +240,10 @@
   
   .current-word {
     font-size: 2.5rem;
+  }
+
+  .favorite-button {
+    font-size: 2rem;
   }
   
   .word-display {
@@ -154,5 +253,15 @@
   .phrase-item {
     font-size: 1rem;
     padding: 12px 15px;
+  }
+
+  .header-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .word-counter {
+    font-size: 0.85rem;
+    padding: 6px 12px;
   }
 }
