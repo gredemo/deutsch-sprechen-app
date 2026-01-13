@@ -1,0 +1,58 @@
+:root {
+  /* Dark theme with neon green accents */
+  --dark-bg: #1a1a1a;
+  --dark-card: #2a2a2a;
+  --dark-lighter: #3a3a3a;
+  --neon-green: #00ff88;
+  --neon-green-dark: #00dd77;
+  --neon-green-light: #33ffaa;
+  --text-white: #ffffff;
+  --text-gray: #b0b0b0;
+  
+  /* Semantic colors */
+  --primary: var(--neon-green);
+  --primary-dark: var(--neon-green-dark);
+  --primary-light: var(--neon-green-light);
+  --accent: var(--neon-green);
+  --background: var(--dark-bg);
+  --card-bg: var(--dark-card);
+  --text: var(--text-white);
+  --text-light: var(--text-gray);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 62, 45, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}

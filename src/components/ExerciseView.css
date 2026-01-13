@@ -1,0 +1,158 @@
+.exercise-view {
+  width: 100%;
+  max-width: 800px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark-card);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--neon-green);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  padding: 10px 20px;
+  background-color: var(--dark-lighter);
+  color: var(--text-white);
+  border-radius: 8px;
+  font-size: 1rem;
+  border: 1px solid var(--neon-green);
+}
+
+.back-button:hover {
+  background-color: var(--neon-green);
+  color: var(--dark-bg);
+}
+
+.level-badge {
+  padding: 8px 16px;
+  background-color: var(--neon-green);
+  color: var(--dark-bg);
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.word-display {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 221, 119, 0.2) 100%);
+  border-radius: 16px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+  border: 2px solid var(--neon-green);
+}
+
+.current-word {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--neon-green);
+  margin: 0;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.phrases-section {
+  width: 100%;
+  text-align: left;
+}
+
+.phrases-section h3 {
+  color: var(--neon-green);
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.phrases-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phrase-item {
+  padding: 15px 20px;
+  background-color: var(--dark-lighter);
+  border-left: 4px solid var(--neon-green);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: var(--text-white);
+}
+
+.next-button {
+  padding: 15px 40px;
+  background-color: var(--neon-green);
+  color: var(--dark-bg);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.next-button:hover {
+  background-color: var(--neon-green-light);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.word-cloud {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid var(--neon-green);
+}
+
+.cloud-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.cloud-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cloud-word {
+  padding: 6px 14px;
+  background-color: rgba(0, 255, 136, 0.2);
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .exercise-view {
+    padding: 20px;
+  }
+  
+  .current-word {
+    font-size: 2.5rem;
+  }
+  
+  .word-display {
+    padding: 30px 20px;
+  }
+  
+  .phrase-item {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+}

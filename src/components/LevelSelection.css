@@ -1,0 +1,79 @@
+.level-selection {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.level-selection h1 {
+  font-size: 3rem;
+  color: var(--neon-green);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 40px;
+}
+
+.level-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.level-button {
+  padding: 30px;
+  background-color: var(--dark-card);
+  border: 3px solid var(--neon-green);
+  border-radius: 12px;
+  font-size: 1.3rem;
+  color: var(--text-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.level-button:hover {
+  background-color: var(--dark-lighter);
+  border-color: var(--neon-green-light);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  transform: translateY(-2px);
+}
+
+.level-button.leicht {
+  border-color: var(--neon-green);
+}
+
+.level-button.mittel {
+  border-color: var(--neon-green);
+}
+
+.level-button.schwer {
+  border-color: var(--neon-green);
+}
+
+.level-label {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--neon-green);
+}
+
+.level-description {
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 600px) {
+  .level-selection h1 {
+    font-size: 2rem;
+  }
+  
+  .level-button {
+    padding: 20px;
+  }
+}
