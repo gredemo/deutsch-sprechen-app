@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ExerciseView.css';
 import { travelTheme } from '../data/themes';
+import { verbTheme } from '../data/verbTheme';
 
-function ExerciseView({ level, onBack }) {
+function ExerciseView({ theme, level, onBack }) {
   const [currentWord, setCurrentWord] = useState(null);
   const [usedWords, setUsedWords] = useState([]);
   const [availableWords, setAvailableWords] = useState([]);
@@ -10,9 +11,12 @@ function ExerciseView({ level, onBack }) {
   const [totalWords, setTotalWords] = useState(0);
   const [favorites, setFavorites] = useState([]);
 
+  // Select the correct theme
+  const selectedTheme = theme === 'verben' ? verbTheme : travelTheme;
+
   // Load favorites from localStorage on mount
   useEffect(() => {
-    const savedFavorites = localStorage.getItem('deutschSprechenFavorites');
+    const savedFavorites = localStorage.getItem(`deutschSprechen_${theme}_Favorites`);
     if (savedFavorites) {
       try {
         setFavorites(JSON.parse(savedFavorites));
@@ -20,28 +24,28 @@ function ExerciseView({ level, onBack }) {
         console.error('Error loading favorites:', e);
       }
     }
-  }, []);
+  }, [theme]);
 
   // Save favorites to localStorage whenever they change
   useEffect(() => {
     if (favorites.length > 0) {
-      localStorage.setItem('deutschSprechenFavorites', JSON.stringify(favorites));
+      localStorage.setItem(`deutschSprechen_${theme}_Favorites`, JSON.stringify(favorites));
     }
-  }, [favorites]);
+  }, [favorites, theme]);
 
   useEffect(() => {
-    // Initialize with all words for the selected level
-    const words = travelTheme[level] || [];
+    // Initialize with all words for the selected level and theme
+    const words = selectedTheme[level] || [];
     setAvailableWords([...words]);
     setTotalWords(words.length);
     setCurrentIndex(1);
     pickRandomWord([...words], []);
-  }, [level]);
+  }, [level, theme]);
 
   const pickRandomWord = (available, used) => {
     if (available.length === 0) {
       // All words used - reset
-      const allWords = travelTheme[level] || [];
+      const allWords = selectedTheme[level] || [];
       setAvailableWords([...allWords]);
       setUsedWords([]);
       setCurrentIndex(1);
@@ -83,12 +87,16 @@ function ExerciseView({ level, onBack }) {
     return <div className="exercise-view">Laddar...</div>;
   }
 
+  // Display theme name in Swedish
+  const themeDisplayName = theme === 'verben' ? 'Verben' : 'Reisen';
+
   return (
     <div className="exercise-view">
       <div className="header">
         <button className="back-button" onClick={onBack}>← Tillbaka</button>
         <div className="header-info">
           <span className="word-counter">Ord {currentIndex} av {totalWords}</span>
+          <span className="theme-badge">{themeDisplayName}</span>
           <span className="level-badge">{level}</span>
         </div>
       </div>

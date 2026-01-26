@@ -56,6 +56,25 @@
   text-transform: capitalize;
 }
 
+.level-badge {
+  padding: 8px 16px;
+  background-color: var(--neon-green);
+  color: var(--dark-bg);
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.theme-badge {
+  padding: 8px 16px;
+  background-color: var(--dark-lighter);
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
 .main-content {
   flex: 1;
   display: flex;

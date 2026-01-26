@@ -1,7 +1,7 @@
 import React from 'react';
 import './LevelSelection.css';
 
-function LevelSelection({ onSelectLevel }) {
+function LevelSelection({ onSelectLevel, onBack }) {
   const levels = [
     { id: 'leicht', label: 'Leicht', description: 'Enkla ord och fraser' },
     { id: 'mittel', label: 'Mittel', description: 'Mellan nivå' },
@@ -25,6 +25,10 @@ function LevelSelection({ onSelectLevel }) {
           </button>
         ))}
       </div>
+
+      <button className="back-button" onClick={onBack}>
+        ← Tillbaka till teman
+      </button>
     </div>
   );
 }
