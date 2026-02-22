@@ -4,7 +4,8 @@ import './ThemeSelection.css';
 function ThemeSelection({ onSelectTheme }) {
   const themes = [
     { id: 'reisen', label: 'Reisen', description: 'Resa och turism' },
-    { id: 'verben', label: 'Verben', description: 'Viktiga verb' }
+    { id: 'verben', label: 'Verben', description: 'Viktiga verb' },
+    { id: 'arbeiten', label: 'Arbeiten', description: 'Yrke och arbetsliv' }
   ];
 
   return (

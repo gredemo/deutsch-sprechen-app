@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ExerciseView.css';
 import { travelTheme } from '../data/themes';
 import { verbTheme } from '../data/verbTheme';
+import { arbeitTheme } from '../data/arbeitTheme';
 
 function ExerciseView({ theme, level, onBack }) {
   const [currentWord, setCurrentWord] = useState(null);
@@ -12,7 +13,7 @@ function ExerciseView({ theme, level, onBack }) {
   const [favorites, setFavorites] = useState([]);
 
   // Select the correct theme
-  const selectedTheme = theme === 'verben' ? verbTheme : travelTheme;
+  const selectedTheme = theme === 'verben' ? verbTheme : theme === 'arbeiten' ? arbeitTheme : travelTheme;
 
   // Load favorites from localStorage on mount
   useEffect(() => {
@@ -88,7 +89,7 @@ function ExerciseView({ theme, level, onBack }) {
   }
 
   // Display theme name in Swedish
-  const themeDisplayName = theme === 'verben' ? 'Verben' : 'Reisen';
+  const themeDisplayName = theme === 'verben' ? 'Verben' : theme === 'arbeiten' ? 'Arbeiten' : 'Reisen';
 
   return (
     <div className="exercise-view">
